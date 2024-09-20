@@ -1,0 +1,18 @@
+.fetch-more-posts-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    margin-top: 20px;
+}
+.fetch-more-posts-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.feed{
+    margin-bottom: 100px;
+}
