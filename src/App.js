@@ -3,6 +3,7 @@ import Home from './xs-dashboard/component/Home';
 import Feed from './xs-dashboard/component/Feed/Feed';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import Edit from './xs-dashboard/component/Edit/Edit';
 
 
 
@@ -15,11 +16,12 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/feed" element={<Feed />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/edit" element={<Edit />} />
         </Routes>
       </Router>
       
-
+    
     </div>
   );
 }
