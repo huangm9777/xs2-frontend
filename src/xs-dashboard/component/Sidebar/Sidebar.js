@@ -23,7 +23,7 @@ function Sidebar() {
           <li className="sidebar-nav-item">
             <Link to="/edit" className="sidebar-nav-link"> {/* Update to use Link */}
               <span className="sidebar-nav-icon">✏️</span> {/* Edit icon */}
-              <span className="sidebar-nav-text">Edit</span>
+              <span className="sidebar-nav-text">Create</span>
             </Link>
           </li>
           <li className="sidebar-nav-item">
