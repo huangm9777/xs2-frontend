@@ -12,18 +12,7 @@ function Feed() {
   const [newPostTime, setNewPostTime] = useState(null);
   const [total, setTotal] = useState(0);
 
-  // const observer = useRef();
-  // const lastPostElementRef = useCallback(node => {
-  //   if (loading) return;
-  //   if (observer.current) observer.current.disconnect();
-  //   observer.current = new IntersectionObserver(entries => {
-  //     if (entries[0].isIntersecting && hasMore) {
-  //       setPage(prevPage => prevPage + 1);
-  //     }
-  //   });
-  //   if (node) observer.current.observe(node);
-  // }, [loading, hasMore]);
-
+  
   // 初始化获取帖子 
   useEffect(() => {
     fetchPosts("0", "20000000000000", "__all__");

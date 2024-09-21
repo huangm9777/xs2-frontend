@@ -1,0 +1,64 @@
+.main-content {
+    padding-bottom: 30px;
+}
+.edit-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.edit-textarea {
+    width: 100%;
+    height: 30%;
+    border: 1px solid #ccc;
+    
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+    padding: 5px;
+    margin-bottom: 10px;
+    resize: none;
+    font-size: 16px;
+    
+}
+
+.edit-textarea:focus {
+    outline: none;
+}
+.icon {
+    font-size: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.button-container button {
+    margin-right: 10px;
+}
+
+@media (max-width: 600px) {
+    .edit-container {
+        flex-direction: column;
+        height: 100%;
+    }
+    
+    
+}
+
+@media (max-width: 1000px) {
+    .edit-container {
+        flex-direction: column;
+        
+    }
+    
+}
