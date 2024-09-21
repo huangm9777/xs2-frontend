@@ -3,14 +3,17 @@ import Article from '../page/Article'
 import Home from '../page/xs-dashboard/component/Home'
 import {createBrowserRouter} from 'react-router-dom'
 import Edit from '../page/xs-dashboard/component/Edit/Edit'
-
-const router = createBrowserRouter([
+import Layout from '../page/Layout'
+import Board from '../page/Board'   
+import About from '../page/About'
+import NotFound from '../page/NotFound'
+ const router = createBrowserRouter([
     {
         path: '/login',
         element: <Login/>
     },
     {
-        path: '/article',
+        path: '/article/:id',
         element: <Article/>
     },
     {
@@ -20,6 +23,27 @@ const router = createBrowserRouter([
     {
         path: '/edit',
         element: <Edit/>
+    },
+    {
+        path: '/',
+        element: <Layout/>,
+        children: [
+            {
+                index: true,
+                element: <Board/>
+            },
+            {
+                path: 'about',
+                element: <About/>
+            },
+            {
+                path: 'board',
+                element: <Board/>
+            }
+        ]
+    },{
+        path: '/*',
+        element: <NotFound/>
     }
 ])
 
