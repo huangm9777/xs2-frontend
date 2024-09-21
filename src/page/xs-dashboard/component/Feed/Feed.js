@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import Post from '../Post/Post';
 import './Feed.css';
+import NewPost from '../Post/NewPost';
 
 function Feed() {
   const [posts, setPosts] = useState([]);
@@ -11,19 +12,9 @@ function Feed() {
   const [lastPostTime, setLastPostTime] = useState(null);
   const [newPostTime, setNewPostTime] = useState(null);
   const [total, setTotal] = useState(0);
+  
 
-  // const observer = useRef();
-  // const lastPostElementRef = useCallback(node => {
-  //   if (loading) return;
-  //   if (observer.current) observer.current.disconnect();
-  //   observer.current = new IntersectionObserver(entries => {
-  //     if (entries[0].isIntersecting && hasMore) {
-  //       setPage(prevPage => prevPage + 1);
-  //     }
-  //   });
-  //   if (node) observer.current.observe(node);
-  // }, [loading, hasMore]);
-
+  
   // 初始化获取帖子 
   useEffect(() => {
     fetchPosts("0", "20000000000000", "__all__");
@@ -89,6 +80,7 @@ function Feed() {
     <div className="feed">
       <h2 className="feed-title">Latest Posts</h2>
       <p>New Post Time: {newPostTime}</p>
+      
       <div className="feed-content">
         {posts.map((post, index) => {
           return <Post key={post.id} post={post} />;
@@ -98,6 +90,7 @@ function Feed() {
       <div className="fetch-more-posts-container">
         <button onClick={()=>fetchPosts("0", lastPostTime, "__all__")} className="fetch-more-posts-button">Fetch More Posts</button>
       </div>
+
     </div>
   );
 }

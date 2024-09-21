@@ -4,8 +4,6 @@ import Home from '../page/xs-dashboard/component/Home'
 import {createBrowserRouter} from 'react-router-dom'
 import Edit from '../page/xs-dashboard/component/Edit/Edit'
 import Layout from '../page/Layout'
-import Board from '../page/Board'   
-import About from '../page/About'
 import NotFound from '../page/NotFound'
  const router = createBrowserRouter([
     {
@@ -17,34 +15,34 @@ import NotFound from '../page/NotFound'
         element: <Article/>
     },
     {
-        path: '/home',
-        element: <Home/>
-    },
-    {
-        path: '/edit',
-        element: <Edit/>
-    },
-    {
         path: '/',
         element: <Layout/>,
         children: [
             {
                 index: true,
-                element: <Board/>
+                element: <Home/>
             },
             {
-                path: 'about',
-                element: <About/>
+                path: '/home',
+                element: <Home/>
             },
             {
-                path: 'board',
-                element: <Board/>
+                path: '/edit',
+                element: <Edit/>
             }
         ]
     },{
         path: '/*',
         element: <NotFound/>
-    }
+    },
+    // {
+    //     path: '/home',
+    //     element: <Home/>
+    // },
+    // {
+    //     path: '/edit',
+    //     element: <Edit/>
+    // }
 ])
 
 export default router

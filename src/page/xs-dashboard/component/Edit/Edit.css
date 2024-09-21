@@ -34,6 +34,27 @@
     cursor: pointer;
 }
 
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.button-container button {
+    margin-right: 10px;
+}
+
+@media (max-width: 600px) {
+    .edit-container {
+        flex-direction: column;
+        height: 100%;
+    }
+    
+    
+}
+
 @media (max-width: 1000px) {
     .edit-container {
         flex-direction: column;

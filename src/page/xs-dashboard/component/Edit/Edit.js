@@ -2,6 +2,9 @@ import React, { useRef, useState } from 'react'
 import Sidebar from '../Sidebar/Sidebar'
 import './Edit.css'
 import ImagesHolder from './ImagesHolder'
+import {PictureOutlined,SmileOutlined, EnvironmentOutlined} from '@ant-design/icons'
+import { Button, Flex, Tooltip } from 'antd';
+
 
 function Edit() {
   const textareaRef = useRef(null);
@@ -26,7 +29,7 @@ function Edit() {
 
   return (
       <div className="home">
-        <Sidebar />
+        {/* <Sidebar /> */}
         <main className="main-content">
             <header className="edit-header">
               <h1>Create</h1>
@@ -37,17 +40,23 @@ function Edit() {
               <textarea ref={textareaRef} className="edit-textarea" placeholder="Whats happening?" rows="3" cols="40" />
               {image.length > 0 && <ImagesHolder />}
               <br></br><div className="icon-list">
-                <span className="icon">📷</span> {/* Image Icon */}
-                <span className="icon">😊</span> {/* Emoji Icon */}
-                <span className="icon">📍</span> {/* Location Icon */}
+                <Tooltip title="Attach Image">
+                <span className="icon" ><PictureOutlined /></span> {/* Image Icon */}
+                </Tooltip>
+                <Tooltip title="Add Emoji">
+                <span className="icon"><SmileOutlined /></span> {/* Emoji Icon */}
+                </Tooltip>
+                <Tooltip title="Attach Location">
+                <span className="icon"><EnvironmentOutlined /></span> {/* Location Icon */}
+                </Tooltip>
               </div>
-              <button className="edit-button" onClick={handleSave}>Save</button>
-              <button className="edit-button" onClick={handlePost}>Post</button>
+              <Button>Save</Button>
+              <Button>Post</Button>
+              {/* <button className="edit-button" onClick={handleSave}>Save</button>
+              <button className="edit-button" onClick={handlePost}>Post</button> */}
             </div>
             <br></br>
-            <div className="draft-content">
-              <h2>Draft</h2>
-            </div>
+            
           </div>
         </main>
       </div>

@@ -14,7 +14,7 @@ const Login = () => {
     // check if user is logged in
     const user = localStorage.getItem('user')
     if(user) {
-      navigate('/home')
+      // navigate('/home')
       //remind user login success
       message.success('You have Logined')
     }
