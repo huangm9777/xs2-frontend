@@ -4,32 +4,33 @@ import  './index.scss'
 import {useDispatch} from 'react-redux'
 import {fetchLogin} from '@/store/module/user'
 import { useEffect } from "react";
+import { setToken } from "@/util";
 
 
 
 const Login = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  useEffect(() => {
-    // check if user is logged in
-    const user = localStorage.getItem('user')
-    if(user) {
-      // navigate('/home')
-      //remind user login success
-      message.success('You have Logined')
-    }
-  })
+  // useEffect(() => {
+  //   // check if user is logged in
+  //   const user = localStorage.getItem('user')
+  //   if(user) {
+  //     // navigate('/home')
+  //     //remind user login success
+  //     message.success('You have Logined')
+  //   }
+  // })
 
   // submit
   const onFinish = async (values) => {
     console.log('Success:', values);
     //make request
-    await dispatch(fetchLogin(values))
+    const response = await dispatch(fetchLogin(values))
     // route to home
     navigate('/home')
     //remind user login success
     message.success('Login Success')
-
+    
 
   };
   const onFinishFailed = (errorInfo) => {

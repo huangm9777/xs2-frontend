@@ -1,41 +1,50 @@
 //user state management
 import{createSlice}from '@reduxjs/toolkit'
 import { request } from '@/util'
+import {setToken as _setToken, removeToken, getToken} from '@/util'
 
 
 const userSlice=createSlice({
     name:'user',
     initialState:{
-        token: localStorage.getItem('token_key') || '',
+        token: getToken() || '',
+        userInfo: {}
     },
     reducers:{
         
         setToken(state,action){
             state.token=action.payload
-            localStorage.setItem('token_key',action.payload)
+            _setToken(action.payload)
 
         },
-        getToken (state){
-            return state.token
+        setUserInfo(state,action){
+            state.userInfo=action.payload
         }
     }
 })
-
+// use login 
 const fetchLogin = (loginForm)=>{
     return async(dispatch)=>{
         //call api
         const res = await request.post('/user/login',loginForm)
-
-        dispatch(setToken(res.data.token))
-
-
+        // setToken(res.data.token)
+        dispatch(setToken(res.data.data.token))
+        
+    }
+}
+// retrieve user info 
+const fetchUserInfo = ()=>{
+    return async(dispatch)=>{
+        const res = await request.get('/user/profile')
+        dispatch(setUserInfo(res.data.data))
+        
     }
 }
 
 
-const {setToken} = userSlice.actions
-export {setToken, fetchLogin} 
+const {setToken, setUserInfo} = userSlice.actions
 const userReducer = userSlice.reducer
 
+export { fetchLogin, fetchUserInfo} 
 export default userReducer
 

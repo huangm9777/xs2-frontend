@@ -46,8 +46,15 @@ function Post({ post }) {
       <div className="post-info">
         <span>Channel: {post.channelId}</span>
         <span>Labels: {post.labels}</span>
-        <span>Submitted: {new Date(post.submitedTime).toLocaleString()}</span>
-        {texts.map((text, index) => (
+        <span>Submitted: {new Date(post.publishTime).toLocaleString()}</span>
+        <h1>
+          {post.title}
+        </h1>
+        <div>
+          {post.content}
+
+        </div>
+        {/* {texts.map((text, index) => (
           <p key={index}>{text}</p>
         ))}
         <Image.PreviewGroup
@@ -60,7 +67,7 @@ function Post({ post }) {
 
           ))}
           
-        </Image.PreviewGroup>
+        </Image.PreviewGroup> */}
         
       </div>
       <div className='post-actions'>
