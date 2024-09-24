@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import Post from '../Post/Post';
 import './Feed.css';
 import NewPost from '../Post/NewPost';
+import { request } from '@/util';
 
 function Feed() {
   const [posts, setPosts] = useState([]);
@@ -21,24 +22,39 @@ function Feed() {
   }, []);
 
   // 获取更多帖子
+
   const fetchPosts = async (maxBehotTime, minBehotTime, tag) => {
     try {
       // setLoading(true);
-      const response = await fetch(`http://localhost:51802/media/listmore`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          // Add any required body parameters here
-          "maxBehotTime":maxBehotTime,
+      // const response = await fetch(`http://localhost:51802/media/listmore`, {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //   },
+      //   body: JSON.stringify({
+      //     // Add any required body parameters here
+      //     "maxBehotTime":maxBehotTime,
 
-          "minBehotTime":minBehotTime,
+      //     "minBehotTime":minBehotTime,
 
-          "tag": tag
-        }),
-      });
-      const responseData = await response.json();
+      //     "tag": tag
+      //   }),
+      // });
+      const response = await request.post("/media/listmore", {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            // Add any required body parameters here
+            "maxBehotTime":maxBehotTime,
+  
+            "minBehotTime":minBehotTime,
+  
+            "tag": tag
+          }),
+        
+      })
+      const responseData = await response.data;
       // 如果获取到数据，则将数据添加到posts中，并设置lastPostTime
       if (responseData.code === 200) {
         // 如果获取到的数据为空，则设置hasMore为false
@@ -46,6 +62,7 @@ function Feed() {
           alert("没有更多数据了");
           // setError("没有更多帖子可供加载了，请稍后再试！"); 
         }
+        
         // 如果获取到的数据不为空，则将数据添加到posts中，并设置lastPostTime
         setPosts(prevPosts => {
           const newPosts = [...prevPosts, ...responseData.data];
@@ -54,10 +71,11 @@ function Feed() {
             const lastPost = newPosts[newPosts.length - 1];
             
             // 设置lastPostTime
-            setLastPostTime(lastPost.submitedTime);
+            setLastPostTime(lastPost.publishTime);
             // 设置newPostTime
-            setNewPostTime(newPosts[0].submitedTime);
+            setNewPostTime(newPosts[0].publishTime);
           }
+
           
           return newPosts;
         });
@@ -79,7 +97,7 @@ function Feed() {
   return (
     <div className="feed">
       <h2 className="feed-title">Latest Posts</h2>
-      <p>New Post Time: {newPostTime}</p>
+      <p>New Post Time: {lastPostTime}</p>
       
       <div className="feed-content">
         {posts.map((post, index) => {

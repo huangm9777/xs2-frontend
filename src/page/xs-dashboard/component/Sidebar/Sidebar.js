@@ -4,11 +4,40 @@ import { Link } from 'react-router-dom'; // Add this import
 import{HomeOutlined,SearchOutlined,EditOutlined,UserOutlined,SettingOutlined } from '@ant-design/icons';
 
 function Sidebar() {
+
+  const items = [
+    {
+      label:'Home',
+      key: '/',
+      icon: <HomeOutlined />,
+    },{
+      label:'Explore',
+      key: '/explore',
+      icon: <SearchOutlined />,
+    },{
+      label:'Create',
+      key: '/edit',
+      icon: <EditOutlined />,
+    },{
+      label:'Setting',
+      key: '/setting',
+      icon: <SettingOutlined />,
+    },{
+      label:'User Profile',
+      key: '/user_profile',
+      icon: <UserOutlined />,
+    },
+
+  ]
+
+
   
   return (
     <div className="sidebar">
       <nav>
         <ul className="sidebar-nav">
+
+          
           <li className="sidebar-nav-item">
             <Link to="/home" className="sidebar-nav-link">
               <span className="sidebar-nav-icon"><HomeOutlined /></span>
@@ -22,8 +51,8 @@ function Sidebar() {
             </a>
           </li>
           <li className="sidebar-nav-item">
-            <Link to="/edit" className="sidebar-nav-link"> {/* Update to use Link */}
-              <span className="sidebar-nav-icon"><EditOutlined /></span> {/* Edit icon */}
+            <Link to="/edit" className="sidebar-nav-link">
+              <span className="sidebar-nav-icon"><EditOutlined /></span> 
               <span className="sidebar-nav-text">Create</span>
             </Link>
           </li>
@@ -39,8 +68,10 @@ function Sidebar() {
               <span className="sidebar-nav-text">User Profile</span>
             </a>
           </li>
-          {/* Add more navigation items as needed */}
+          
         </ul>
+
+
       </nav>
     </div>
   );

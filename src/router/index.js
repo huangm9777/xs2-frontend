@@ -5,6 +5,9 @@ import {createBrowserRouter} from 'react-router-dom'
 import Edit from '../page/xs-dashboard/component/Edit/Edit'
 import Layout from '../page/Layout'
 import NotFound from '../page/NotFound'
+import { AuthRoute } from '@/component/AuthRoute'
+import Explore from '@/page/Explore'
+
  const router = createBrowserRouter([
     {
         path: '/login',
@@ -16,8 +19,12 @@ import NotFound from '../page/NotFound'
     },
     {
         path: '/',
-        element: <Layout/>,
+        element: <AuthRoute> <Layout/></AuthRoute>,
         children: [
+            {
+                path: '/article',
+                element: <Article/>
+            },
             {
                 index: true,
                 element: <Home/>
@@ -29,7 +36,13 @@ import NotFound from '../page/NotFound'
             {
                 path: '/edit',
                 element: <Edit/>
+            },
+            {
+                path: '/explore',
+                element: <Explore/>
+
             }
+
         ]
     },{
         path: '/*',
