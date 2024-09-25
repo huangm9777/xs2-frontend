@@ -1,10 +1,10 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import Sidebar from '../Sidebar/Sidebar'
 import './Edit.css'
 import ImagesHolder from './ImagesHolder'
 import {PictureOutlined,SmileOutlined, EnvironmentOutlined} from '@ant-design/icons'
 import { Button, Flex, Tooltip } from 'antd';
-
+import { getUserInfoAPI } from '@/api/user'
 
 function Edit() {
   const textareaRef = useRef(null);
@@ -16,6 +16,15 @@ function Edit() {
     location: '',
     date: '',
   });
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      const userInfo = await getUserInfoAPI();
+      
+      // console.log(userInfo);
+    };
+    fetchData();
+  },[])
 
   const handleSave = () => {
     const text = textareaRef.current.value;
@@ -32,7 +41,7 @@ function Edit() {
         {/* <Sidebar /> */}
         <main className="main-content">
             <header className="edit-header">
-              <h1>Create</h1>
+              <h1>Hi {}</h1>
             </header>
           <div className="edit-container">
             <div className="edit-content">  

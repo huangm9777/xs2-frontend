@@ -1,6 +1,8 @@
 //axios 
 import axios from 'axios';
-import { getToken } from './token';
+import { getToken, removeToken } from './token';
+import {message} from 'antd';
+import router from '@/router';
 //root url
 
 // timeout
@@ -31,6 +33,14 @@ request.interceptors.request.use((config)=> {
 request.interceptors.response.use((response)=> {
     return response
 }, (error)=> {
+    //monitor 401 token errer
+    if (error.response.status === 401) {
+        //redirect to login page
+        // window.location.href = '/login'
+        removeToken()
+        message.error('Please login first')
+        router.navigate('/login')
+    }
     return Promise.reject(error)
 })
 

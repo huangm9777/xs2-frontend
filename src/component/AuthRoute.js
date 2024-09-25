@@ -1,9 +1,10 @@
 
 import { Navigate } from "react-router-dom";
+import { getToken } from "@/util";
 
 
 
-const { getToken } = require("@/util");
+// const { getToken } = require("@/util");
 
 
 
