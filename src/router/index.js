@@ -7,6 +7,7 @@ import Layout from '../page/Layout'
 import NotFound from '../page/NotFound'
 import { AuthRoute } from '@/component/AuthRoute'
 import Explore from '@/page/Explore'
+import PostSubmitSuccess from '@/page//Result/PostSubmitSuccess'
 
  const router = createBrowserRouter([
     {
@@ -40,6 +41,11 @@ import Explore from '@/page/Explore'
             {
                 path: '/explore',
                 element: <Explore/>
+
+            },
+            {
+                path: '/postsubmitsuccess',
+                element: <PostSubmitSuccess/>
 
             }
 

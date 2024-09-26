@@ -8,10 +8,11 @@ import {
     Input,
     Upload,
     Space,
-    Select
+    Select,
+    Result 
   } from 'antd'
   
-import { PlusOutlined } from '@ant-design/icons'
+import { PlusOutlined,SmileOutlined  } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
 import './index.scss'
 import { useState } from 'react'
@@ -26,11 +27,13 @@ import { getUserInfoAPI } from '@/api/user'
   
   const Edit = () => {
     const [content, setContent] = useState('');
+    
 
 
     // submit form
-    const onFinish = (formValues) => {
-        // console.log(formValues);
+    const onFinish = async (formValues) => {
+        
+        
 
         // handle form values
         const { content} = formValues;
@@ -38,7 +41,7 @@ import { getUserInfoAPI } from '@/api/user'
         let images = ''
         images += imageList.map(item => item.response.data);
         const type = imageList.length;
-        console.log(type);
+        
         // arrange data
         const reqData = {
             content,
@@ -47,7 +50,15 @@ import { getUserInfoAPI } from '@/api/user'
             
         }
         // send data to server
-        submitPostAPI(reqData)
+        const res = await submitPostAPI(reqData)
+        if( res.data.code === 200){
+            //redirect to success page
+            window.location.href = '/postsubmitsuccess'
+        }
+        
+        
+        
+
         
     }
     // store images list
@@ -55,7 +66,7 @@ import { getUserInfoAPI } from '@/api/user'
     //upload 
     const onChange = (value) => {
         setImageList(value.fileList);
-        // console.log(value.fileList);
+        
         
     }
     
@@ -82,13 +93,13 @@ import { getUserInfoAPI } from '@/api/user'
 
       <div className="publish">
         <Card
-          title={
-            <Breadcrumb items={[
-              { title: <Link to={'/'}>Home</Link> },
-              { title: 'Create new post' },
-            ]}
-            />
-          }
+          // title={
+          //   <Breadcrumb items={[
+          //     { title: <Link to={'/'}>Home</Link> },
+          //     { title: 'Create new post' },
+          //   ]}
+          //   />
+          // }
         >
           <Form
             labelCol={{ span: 4 }}

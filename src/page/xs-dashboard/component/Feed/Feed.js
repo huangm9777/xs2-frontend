@@ -18,43 +18,32 @@ function Feed() {
   
   // 初始化获取帖子 
   useEffect(() => {
-    fetchPosts("0", "20000000000000", "__all__");
+    fetchPosts(0, 20000000000000, "__all__");
   }, []);
 
   // 获取更多帖子
 
   const fetchPosts = async (maxBehotTime, minBehotTime, tag) => {
     try {
-      // setLoading(true);
-      // const response = await fetch(`http://localhost:51802/media/listmore`, {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   },
-      //   body: JSON.stringify({
-      //     // Add any required body parameters here
-      //     "maxBehotTime":maxBehotTime,
-
-      //     "minBehotTime":minBehotTime,
-
-      //     "tag": tag
-      //   }),
-      // });
-      const response = await request.post("/media/listmore", {
+      const response = await request("/media/listmore", {
+          method:'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({
-            // Add any required body parameters here
-            "maxBehotTime":maxBehotTime,
+          data: ({
+            
+            // required body
+            maxBehotTime,
+
+            minBehotTime,
   
-            "minBehotTime":minBehotTime,
-  
-            "tag": tag
-          }),
+            tag,
+            size:10
+          })
         
       })
       const responseData = await response.data;
+      
       // 如果获取到数据，则将数据添加到posts中，并设置lastPostTime
       if (responseData.code === 200) {
         // 如果获取到的数据为空，则设置hasMore为false
@@ -97,7 +86,7 @@ function Feed() {
   return (
     <div className="feed">
       <h2 className="feed-title">Latest Posts</h2>
-      <p>New Post Time: {lastPostTime}</p>
+      <p>Last Post Time: {lastPostTime}</p>
       
       <div className="feed-content">
         {posts.map((post, index) => {
@@ -106,7 +95,7 @@ function Feed() {
         
       </div>
       <div className="fetch-more-posts-container">
-        <button onClick={()=>fetchPosts("0", lastPostTime, "__all__")} className="fetch-more-posts-button">Fetch More Posts</button>
+        <button onClick={()=>fetchPosts(0, lastPostTime, '__all__')} className="fetch-more-posts-button">Fetch More Posts</button>
       </div>
 
     </div>

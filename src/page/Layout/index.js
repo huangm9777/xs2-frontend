@@ -84,7 +84,7 @@ const GeekLayout = () => {
           <Menu
             mode="inline"
             theme="dark"
-            // defaultSelectedKeys={['/']}
+            defaultSelectedKeys={['/home']}
             selectedKeys={selectedKeys}
             onClick={OnMenuClick}
             items={items}

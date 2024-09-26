@@ -8,6 +8,7 @@ import router from '@/router';
 // timeout
 
 const request = axios.create({
+    // baseURL: 'http://localhost:8080/api',
     baseURL: 'http://localhost:51802',
     timeout: 10000
     // withCredentials: true
